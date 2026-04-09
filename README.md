@@ -7,7 +7,7 @@ A simple, lightweight browser-based tool to assist with the German and the NATO 
 Clone the repository and open `index.html` in any modern browser:
 
 ```bash
-git clone https://github.com/dein-username/phonetic-alphabet.git
+https://github.com/eliasschlinkert/phonetic-alphabet.git
 ```
 
 No further installation or dependencies required.
