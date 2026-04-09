@@ -11,3 +11,5 @@ https://github.com/eliasschlinkert/phonetic-alphabet.git
 ```
 
 No further installation or dependencies required.
+
+Optional: Create legal.html file to make the "Legal" button at the bottom of the site work
