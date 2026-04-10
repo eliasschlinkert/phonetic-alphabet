@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <!-- Erlaubt nur Ressourcen vom eigenen Server; blockiert Inline-Scripts und externe Quellen -->
     <meta http-equiv="Content-Security-Policy"
-          content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self';">
+          content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self';">
     <!-- Sendet beim Klick auf externe Links nur den Origin, nicht die volle URL -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Phonetic alphabet</title>
     <link rel="icon" type="image/png" href="anruf.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -52,7 +55,7 @@
     </div>
 
     <div class="credit">
-        <span class="credit-before">made with&nbsp;&nbsp;</span><span class="credit-heart">♥</span><span class="credit-after">&nbsp;&nbsp;by <a href="https://www.eliasslt.de" target="_blank" rel="noopener noreferrer">elias</a></span>
+        <span class="credit-before">made with&nbsp;&nbsp;</span><span class="credit-heart">❤️</span><span class="credit-after">&nbsp;&nbsp;by <a href="https://www.eliasslt.de" target="_blank" rel="noopener noreferrer">elias</a></span>
     </div>
     <script src="script.js"></script>
 </body>
