@@ -7,8 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const inputField    = document.getElementById('inputField');
     const clearInputBtn = document.getElementById('clearInput');
 
-    // ── Data ────────────────────────────────────────────────────────────────
-
     const germanAlphabet = [
         { letter: 'A', word: 'Anton' },
         { letter: 'B', word: 'Berta' },
@@ -80,8 +78,6 @@ document.addEventListener("DOMContentLoaded", function () {
         '9': { de: 'Neun',   nato: 'Nine'  },
     };
 
-    // symbol  = das echte Zeichen (für Lookup im Eingabetext)
-    // display = was auf der Schaltfläche steht (· für Leerzeichen)
     const specialChars = [
         { symbol: ' ',  display: '·',  de: 'Leerzeichen',       en: 'Space'             },
         { symbol: ',',  display: ',',  de: 'Komma',             en: 'Comma'             },
@@ -107,17 +103,12 @@ document.addEventListener("DOMContentLoaded", function () {
         { symbol: '=',  display: '=',  de: 'Gleich',            en: 'Equals'            },
     ];
 
-    // ── Lookup Maps: O(1) statt O(n) pro Zeichen ────────────────────────────
-
     const germanMap      = new Map(germanAlphabet.map(({ letter, word }) => [letter, word]));
     const natoMap        = new Map(natoAlphabet.map(({ letter, word }) => [letter, word]));
     const deNumberMap    = new Map(Object.entries(numbers).map(([k, v]) => [k, v.de]));
     const natoNumberMap  = new Map(Object.entries(numbers).map(([k, v]) => [k, v.nato]));
     const specialCharMap = new Map(specialChars.map(({ symbol, de, en }) => [symbol, { de, en }]));
 
-    // ── Helpers ──────────────────────────────────────────────────────────────
-
-    /** Erstellt ein <p>-Element mit fettem Label und Text-Inhalt. */
     function makeInfoRow(label, text) {
         const p = document.createElement('p');
         const strong = document.createElement('strong');
@@ -127,14 +118,11 @@ document.addEventListener("DOMContentLoaded", function () {
         return p;
     }
 
-    /** Zeigt die Info-Box mit Fade-Animation an. */
     function showInfoBox(deText, natoText) {
         infoDiv.innerHTML = '';
         infoDiv.classList.remove('show');
         infoDiv.appendChild(makeInfoRow('Deutsch:', deText));
         infoDiv.appendChild(makeInfoRow('NATO:', natoText));
-        // Doppeltes requestAnimationFrame stellt sicher, dass der Browser
-        // den class-Remove tatsächlich rendert, bevor show gesetzt wird.
         requestAnimationFrame(() => {
             requestAnimationFrame(() => infoDiv.classList.add('show'));
         });
@@ -145,8 +133,6 @@ document.addEventListener("DOMContentLoaded", function () {
         infoDiv.classList.remove('show');
     }
 
-    // ── Alphabet-Grid aufbauen ───────────────────────────────────────────────
-
     const gridFragment = document.createDocumentFragment();
     germanAlphabet.forEach(({ letter }) => {
         const div = document.createElement('div');
@@ -155,8 +141,6 @@ document.addEventListener("DOMContentLoaded", function () {
         gridFragment.appendChild(div);
     });
     alphabetDiv.appendChild(gridFragment);
-
-    // ── Sonderzeichen-Grid aufbauen ──────────────────────────────────────────
 
     const specialCharsDiv = document.createElement('div');
     specialCharsDiv.className = 'special-chars';
@@ -168,10 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
         specialFragment.appendChild(div);
     });
     specialCharsDiv.appendChild(specialFragment);
-    // Nach dem Alphabet-Grid einfügen
     alphabetDiv.insertAdjacentElement('afterend', specialCharsDiv);
-
-    // ── Popup-Inhalt einmalig aufbauen ───────────────────────────────────────
 
     const germanList = document.getElementById('germanAlphabet');
     const natoList   = document.getElementById('natoAlphabet');
@@ -195,17 +176,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
 
+    const creditEl = document.querySelector('.credit');
+    const heartEl  = document.querySelector('.credit-heart');
+
+    heartEl.addEventListener('animationend', () => {
+        heartEl.classList.remove('beating');
+    });
+
     if (isTouchDevice) {
-        // Bildschirmtastatur unterdrücken
         inputField.setAttribute('inputmode', 'none');
 
-        // Herz: Tap togglet .expanded, Tap außerhalb schließt wieder
-        const creditEl   = document.querySelector('.credit');
-        const heartEl    = document.querySelector('.credit-heart');
-
         heartEl.addEventListener('click', (e) => {
-            e.stopPropagation(); // verhindert sofortiges Schließen durch document-Listener
+            e.stopPropagation();
+            const opening = !creditEl.classList.contains('expanded');
             creditEl.classList.toggle('expanded');
+            if (opening) {
+                heartEl.classList.remove('beating');
+                void heartEl.offsetWidth;
+                heartEl.classList.add('beating');
+            }
         });
 
         document.addEventListener('click', () => {
@@ -213,9 +202,13 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     } else {
         inputField.focus();
-    }
 
-    // ── Popup öffnen / schließen ─────────────────────────────────────────────
+        creditEl.addEventListener('mouseenter', () => {
+            heartEl.classList.remove('beating');
+            void heartEl.offsetWidth;
+            heartEl.classList.add('beating');
+        });
+    }
 
     function openPopup() {
         alphabetPopup.classList.add('open');
@@ -234,8 +227,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (e.target === alphabetPopup) closePopup();
     });
 
-    // ── Einzelnen Buchstaben / Sonderzeichen anzeigen ────────────────────────
-
     function showLetterInfo(letter) {
         const de   = germanMap.get(letter);
         const nato = natoMap.get(letter);
@@ -248,8 +239,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!entry) return;
         showInfoBox(entry.de, entry.en);
     }
-
-    // ── Text übersetzen ──────────────────────────────────────────────────────
 
     function translateText(text) {
         const deParts   = [];
@@ -278,21 +267,17 @@ document.addEventListener("DOMContentLoaded", function () {
         showInfoBox(deParts.join(' '), natoParts.join(' '));
     }
 
-    // ── Event Listener ───────────────────────────────────────────────────────
-
     const limitMsg = document.getElementById('limitMsg');
     const MAX_LENGTH = 30;
 
     function triggerShake() {
         limitMsg.classList.remove('show');
-        void limitMsg.offsetWidth; // Reflow erzwingen → Animation startet neu
+        void limitMsg.offsetWidth;
         limitMsg.classList.add('show');
     }
 
-    // keydown feuert auch wenn maxlength den Input bereits blockiert
     inputField.addEventListener('keydown', (e) => {
         if (inputField.value.length >= MAX_LENGTH) {
-            // Nur bei echten Zeichen schütteln, nicht bei Backspace, Arrows etc.
             if (e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
                 triggerShake();
             }
@@ -328,7 +313,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Tastatur-Shortcut nur aktiv, wenn das Input-Feld nicht fokussiert ist
         if (document.activeElement === inputField) return;
         if (e.ctrlKey || e.altKey || e.metaKey) return;
 
