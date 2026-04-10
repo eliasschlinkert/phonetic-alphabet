@@ -17,6 +17,7 @@ body {
     min-height: 100vh;
     text-align: center;
     transition: background-color 0.3s, color 0.3s;
+    user-select: none; /* Keine Selection Handles auf der gesamten Seite */
 }
 
 /* === Container === */
@@ -163,6 +164,7 @@ body {
     width: 100%;
     word-break: break-word;
     overflow-wrap: break-word;
+    user-select: text; /* Ausgabe bleibt kopierbar */
 }
 
 .info.show {
