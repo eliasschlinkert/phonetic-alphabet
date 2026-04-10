@@ -1,9 +1,13 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <!-- Erlaubt nur Ressourcen vom eigenen Server; blockiert Inline-Scripts und externe Quellen -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self';">
+    <!-- Sendet beim Klick auf externe Links nur den Origin, nicht die volle URL -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Phonetic alphabet</title>
     <link rel="icon" type="image/png" href="anruf.png">
     <link rel="stylesheet" href="styles.css">
@@ -46,63 +50,10 @@
             </div>
         </div>
     </div>
-	
+
     <div class="credit">
         <span class="credit-before">made with&nbsp;&nbsp;</span><span class="credit-heart">♥</span><span class="credit-after">&nbsp;&nbsp;by <a href="https://www.eliasslt.de" target="_blank" rel="noopener noreferrer">elias</a></span>
     </div>
     <script src="script.js"></script>
 </body>
 </html>
-=======
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phonetic alphabet</title>
-    <link rel="icon" type="image/png" href="anruf.png">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <div class="input-container">
-            <input type="text" id="inputField" placeholder="Enter something..." />
-            <span id="clearInput" class="clear-icon">🗑️</span>
-        </div>
-        <div class="alphabet" id="alphabet">
-            <!-- Buchstaben werden hier dynamisch eingefügt -->
-        </div>
-        <div class="info" id="info">
-            <!-- Informationen zum Buchstaben werden hier angezeigt -->
-        </div>
-    </div>
-    <button id="showAlphabet">
-        <img src="alphabet-icon.png" alt="Alphabet anzeigen" class="icon">
-    </button>
-    <div id="alphabetPopup" class="popup">
-        <div class="popup-content">
-            <span class="close">&times;</span>
-            <div class="popup-columns">
-                <div>
-                    <img src="deutschland.png" alt="Deutsches Telefonalphabet" class="flag">
-                    <div id="germanAlphabet" class="popup-alphabet">
-                        <!-- Deutsches Alphabet hier -->
-                    </div>
-                </div>
-                <div>
-                    <img src="nato.png" alt="NATO Phonetic Alphabet" class="flag">
-                    <div id="natoAlphabet" class="popup-alphabet">
-                        <!-- NATO Alphabet hier -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-	
-	 <div class="legal">
-        <a href="legal.html">Legal</a>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
->>>>>>> 8dfbbf79b789e6b21385f7c3c8a21fd5c77a1ae2
