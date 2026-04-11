@@ -9,7 +9,7 @@
     <!-- Sendet beim Klick auf externe Links nur den Origin, nicht die volle URL -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Phonetic alphabet</title>
-    <link rel="icon" type="image/png" href="anruf.png">
+    <link rel="icon" type="image/svg+xml" href="alphabet-icon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
@@ -32,20 +32,38 @@
         </div>
     </div>
     <button id="showAlphabet">
-        <img src="alphabet-icon.png" alt="Alphabet anzeigen" class="icon">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Alphabet anzeigen">
+            <path d="M13 7L3 7" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M10 12H3" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M8 17H3" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M11.3161 16.6922C11.1461 17.07 11.3145 17.514 11.6922 17.6839C12.07 17.8539 12.514 17.6855 12.6839 17.3078L11.3161 16.6922ZM16.5 7L17.1839 6.69223C17.0628 6.42309 16.7951 6.25 16.5 6.25C16.2049 6.25 15.9372 6.42309 15.8161 6.69223L16.5 7ZM20.3161 17.3078C20.486 17.6855 20.93 17.8539 21.3078 17.6839C21.6855 17.514 21.8539 17.07 21.6839 16.6922L20.3161 17.3078ZM19.3636 13.3636L20.0476 13.0559L19.3636 13.3636ZM13.6364 12.6136C13.2222 12.6136 12.8864 12.9494 12.8864 13.3636C12.8864 13.7779 13.2222 14.1136 13.6364 14.1136V12.6136ZM12.6839 17.3078L17.1839 7.30777L15.8161 6.69223L11.3161 16.6922L12.6839 17.3078ZM21.6839 16.6922L20.0476 13.0559L18.6797 13.6714L20.3161 17.3078L21.6839 16.6922ZM20.0476 13.0559L17.1839 6.69223L15.8161 7.30777L18.6797 13.6714L20.0476 13.0559ZM19.3636 12.6136H13.6364V14.1136H19.3636V12.6136Z" fill="#1C274C"/>
+        </svg>
     </button>
     <div id="alphabetPopup" class="popup">
         <div class="popup-content">
             <span class="close">&times;</span>
             <div class="popup-columns">
                 <div>
-                    <img src="deutschland.png" alt="Deutsches Telefonalphabet" class="flag">
+                    <svg class="flag" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" aria-label="Deutsches Telefonalphabet" role="img" preserveAspectRatio="xMidYMid meet">
+                        <path fill="#FFCD05" d="M0 27a4 4 0 0 0 4 4h28a4 4 0 0 0 4-4v-4H0v4z"/>
+                        <path fill="#ED1F24" d="M0 14h36v9H0z"/>
+                        <path fill="#141414" d="M32 5H4a4 4 0 0 0-4 4v5h36V9a4 4 0 0 0-4-4z"/>
+                    </svg>
                     <div id="germanAlphabet" class="popup-alphabet">
                         <!-- Deutsches Alphabet hier -->
                     </div>
                 </div>
                 <div>
-                    <img src="nato.png" alt="NATO Phonetic Alphabet" class="flag">
+                    <svg class="flag" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-label="NATO Phonetic Alphabet" role="img" xml:space="preserve">
+                        <path fill="#41479B" d="M473.655,423.724H38.345C17.167,423.724,0,406.557,0,385.379V126.621c0-21.177,17.167-38.345,38.345-38.345h435.31c21.177,0,38.345,17.167,38.345,38.345V385.38C512,406.557,494.833,423.724,473.655,423.724z"/>
+                        <g fill="#F5F5F5">
+                            <path d="M353.582,253.845l-25.316-5.626c-3.636-33.916-30.566-60.832-64.481-64.471l-5.629-25.33c-0.448-2.017-3.862-2.017-4.31,0l-5.615,25.27c-33.93,3.629-60.855,30.604-64.493,64.531l-25.319,5.626c-1.01,0.224-1.729,1.121-1.729,2.155s0.719,1.931,1.728,2.155l25.319,5.626c3.637,33.921,30.563,60.865,64.486,64.499l5.622,25.301c0.225,1.01,1.122,1.729,2.156,1.729s1.931-0.719,2.155-1.728l5.631-25.34c33.912-3.639,60.842-30.547,64.479-64.46l25.318-5.626c1.009-0.225,1.728-1.121,1.728-2.156S354.591,254.069,353.582,253.845z M323.797,247.225l-48.291-10.731L264.78,188.23C295.482,192.191,319.841,216.522,323.797,247.225z M247.222,188.222l-10.728,48.274l-48.276,10.728C192.178,216.522,216.521,192.181,247.222,188.222z M237.642,240.762L252.879,256h-83.81L237.642,240.762z M188.22,264.778l48.276,10.728l10.73,48.286C216.521,319.835,192.178,295.48,188.22,264.778z M256,342.931l-15.238-68.574L256,259.121V342.931z M256,252.879v-83.81l15.238,68.574L256,252.879z M264.788,323.733l10.717-48.228l48.29-10.731C319.84,295.471,295.484,319.767,264.788,323.733z M274.358,271.238L259.121,256h83.81L274.358,271.238z"/>
+                            <path d="M141.241,258.207H17.655c-1.219,0-2.207-0.988-2.207-2.207s0.988-2.207,2.207-2.207h123.586c1.219,0,2.207,0.988,2.207,2.207S142.461,258.207,141.241,258.207z"/>
+                            <path d="M494.345,258.207H370.759c-1.219,0-2.207-0.988-2.207-2.207s0.988-2.207,2.207-2.207h123.586c1.219,0,2.207,0.988,2.207,2.207S495.564,258.207,494.345,258.207z"/>
+                            <path d="M256,143.448c-1.219,0-2.207-0.988-2.207-2.207v-35.31c0-1.219,0.988-2.207,2.207-2.207s2.207,0.988,2.207,2.207v35.31C258.207,142.461,257.219,143.448,256,143.448z"/>
+                            <path d="M256,408.276c-1.219,0-2.207-0.988-2.207-2.207v-35.31c0-1.219,0.988-2.207,2.207-2.207s2.207,0.988,2.207,2.207v35.31C258.207,407.288,257.219,408.276,256,408.276z"/>
+                        </g>
+                    </svg>
                     <div id="natoAlphabet" class="popup-alphabet">
                         <!-- NATO Alphabet hier -->
                     </div>
