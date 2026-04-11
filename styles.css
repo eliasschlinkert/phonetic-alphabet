@@ -42,6 +42,12 @@ body {
     min-width: 0;
 }
 
+.input-row,
+.input-container {
+    -webkit-user-select: auto;
+    user-select: auto;
+}
+
 #inputField {
     padding: 14px 16px;
     width: 100%;
@@ -53,6 +59,7 @@ body {
     transition: border-color 0.3s, box-shadow 0.3s;
     -webkit-user-select: text;
     user-select: text;
+    touch-action: manipulation;
 }
 
 #inputField:focus {

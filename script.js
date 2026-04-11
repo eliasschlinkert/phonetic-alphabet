@@ -184,6 +184,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     if (isTouchDevice) {
+        inputField.addEventListener('touchend', () => {
+            inputField.focus();
+        }, { passive: true });
+
         heartEl.addEventListener('click', (e) => {
             e.stopPropagation();
             const opening = !creditEl.classList.contains('expanded');
