@@ -184,8 +184,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     if (isTouchDevice) {
-        inputField.setAttribute('inputmode', 'none');
-
         heartEl.addEventListener('click', (e) => {
             e.stopPropagation();
             const opening = !creditEl.classList.contains('expanded');
