@@ -27,17 +27,24 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 470px;
+    margin-bottom: 0;
+}
+
 .input-container {
     position: relative;
-    margin-bottom: 0;
-    width: 100%;
-    max-width: 420px;
+    flex: 1;
+    min-width: 0;
 }
 
 #inputField {
-    padding: 14px 44px 14px 16px;
+    padding: 14px 16px;
     width: 100%;
-    max-width: 420px;
     font-size: 20px;
     border-radius: 10px;
     border: 1px solid #ccc;
@@ -52,14 +59,37 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.clear-icon {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
+.clear-btn {
+    flex-shrink: 0;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
     font-size: 20px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
     user-select: none;
+}
+
+.clear-btn:hover {
+    background-color: #f5f5f5;
+    color: #c0392b;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.clear-btn:active {
+    background-color: #ececec;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.clear-btn:focus-visible {
+    outline: 2px solid #888;
+    outline-offset: 2px;
 }
 
 .alphabet {
@@ -392,21 +422,23 @@ body {
         border-radius: 14px;
     }
 
+    .input-row {
+        max-width: 100%;
+    }
+
     .input-container {
         margin-bottom: 0;
-        max-width: 100%;
     }
 
     #inputField {
         font-size: 16px;
-        padding: 13px 42px 13px 14px;
+        padding: 13px 14px;
         border-radius: 10px;
-        max-width: 100%;
     }
 
-    .clear-icon {
+    .clear-btn {
+        width: 42px;
         font-size: 18px;
-        right: 10px;
     }
 
     .info {
