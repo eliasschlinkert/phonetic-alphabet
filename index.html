@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <!-- Erlaubt nur Ressourcen vom eigenen Server; blockiert Inline-Scripts und externe Quellen -->
     <meta http-equiv="Content-Security-Policy"
           content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self';">
-    <!-- Sendet beim Klick auf externe Links nur den Origin, nicht die volle URL -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Phonetic alphabet</title>
     <link rel="icon" type="image/svg+xml" href="alphabet-icon.svg">
@@ -26,12 +24,8 @@
             <button id="clearInput" class="clear-btn" title="Eingabe löschen" aria-label="Eingabe löschen">🗑️</button>
         </div>
         <p id="limitMsg" class="limit-msg">Maximum 30 characters reached</p>
-        <div class="alphabet" id="alphabet">
-            <!-- Buchstaben werden hier dynamisch eingefügt -->
-        </div>
-        <div class="info" id="info">
-            <!-- Informationen zum Buchstaben werden hier angezeigt -->
-        </div>
+        <div class="alphabet" id="alphabet"></div>
+        <div class="info" id="info"></div>
     </div>
     <button id="showAlphabet">
         <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Alphabet anzeigen">
@@ -51,9 +45,7 @@
                         <path fill="#ED1F24" d="M0 14h36v9H0z"/>
                         <path fill="#141414" d="M32 5H4a4 4 0 0 0-4 4v5h36V9a4 4 0 0 0-4-4z"/>
                     </svg>
-                    <div id="germanAlphabet" class="popup-alphabet">
-                        <!-- Deutsches Alphabet hier -->
-                    </div>
+                    <div id="germanAlphabet" class="popup-alphabet"></div>
                 </div>
                 <div>
                     <svg class="flag" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-label="NATO Phonetic Alphabet" role="img" xml:space="preserve">
@@ -66,9 +58,7 @@
                             <path d="M256,408.276c-1.219,0-2.207-0.988-2.207-2.207v-35.31c0-1.219,0.988-2.207,2.207-2.207s2.207,0.988,2.207,2.207v35.31C258.207,407.288,257.219,408.276,256,408.276z"/>
                         </g>
                     </svg>
-                    <div id="natoAlphabet" class="popup-alphabet">
-                        <!-- NATO Alphabet hier -->
-                    </div>
+                    <div id="natoAlphabet" class="popup-alphabet"></div>
                 </div>
             </div>
         </div>
