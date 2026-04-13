@@ -23,3 +23,7 @@ If necessary, a local web server can also be set up.
 ## License
 
 [MIT](LICENSE)
+
+---
+
+Designed and built by Elias Schlinkert. Claude was used as a coding assistant during development.
