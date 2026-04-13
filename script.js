@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function showInfoBox(deText, natoText) {
         infoDiv.innerHTML = '';
         infoDiv.classList.remove('show');
-        infoDiv.appendChild(makeInfoRow('Deutsch:', deText));
+        infoDiv.appendChild(makeInfoRow('German:', deText));
         infoDiv.appendChild(makeInfoRow('NATO:', natoText));
         requestAnimationFrame(() => {
             requestAnimationFrame(() => infoDiv.classList.add('show'));
