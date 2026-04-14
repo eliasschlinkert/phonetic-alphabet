@@ -20,10 +20,10 @@ If necessary, a local web server can also be set up.
 
 ---
 
-## License
-
-[MIT](LICENSE)
+Designed, built and supervised by humans. Coding assisted by Claude.
 
 ---
 
-Designed and built by Elias Schlinkert. Claude was used as a coding assistant during development.
+## License
+
+[MIT](LICENSE)
