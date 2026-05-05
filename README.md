@@ -14,8 +14,6 @@ Clone the repository and open `index.html` in any modern browser:
 git clone https://github.com/eliasschlinkert/phonetic-alphabet.git
 ```
 
-No further installation or dependencies required.
-
 If necessary, a local web server can also be set up.
 
 ---

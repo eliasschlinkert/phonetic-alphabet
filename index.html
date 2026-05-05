@@ -25,6 +25,7 @@
                        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
             </div>
             <button id="clearInput" class="clear-btn" title="Eingabe löschen" aria-label="Eingabe löschen">🗑️</button>
+            <button id="openCounter" class="counter-btn" title="Zeichenzähler öffnen" aria-label="Zeichenzähler öffnen">🔢</button>
         </div>
         <p id="limitMsg" class="limit-msg">Maximum 30 characters reached</p>
         <div class="alphabet" id="alphabet"></div>
@@ -63,6 +64,22 @@
                     </svg>
                     <div id="natoAlphabet" class="popup-alphabet"></div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="counterPopup" class="popup counter-popup" aria-hidden="true" role="dialog" aria-labelledby="counterTitle">
+        <div class="popup-content counter-popup-content">
+            <div class="counter-header">
+                <h2 id="counterTitle" class="counter-title">Zeichenzähler</h2>
+                <button type="button" class="counter-close" aria-label="Schließen" title="Schließen">&times;</button>
+            </div>
+            <textarea id="counterText" class="counter-textarea"
+                      placeholder="Text eingeben oder einfügen..."
+                      autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+            <div class="counter-footer">
+                <div class="counter-count">Zeichen: <span id="counterValue">0</span></div>
+                <div class="counter-max" id="counterMax">Max 20.000 Zeichen</div>
             </div>
         </div>
     </div>

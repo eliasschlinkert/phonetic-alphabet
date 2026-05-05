@@ -6,6 +6,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const closeBtn      = document.querySelector('.close');
     const inputField    = document.getElementById('inputField');
     const clearInputBtn = document.getElementById('clearInput');
+    const openCounterBtn = document.getElementById('openCounter');
+    const counterPopup   = document.getElementById('counterPopup');
+    const counterTextarea = document.getElementById('counterText');
+    const counterValueEl  = document.getElementById('counterValue');
+    const counterFooterEl = document.querySelector('.counter-footer');
+    const counterMaxEl    = document.getElementById('counterMax');
+    const counterCloseBtn = document.querySelector('.counter-close');
 
     const germanAlphabet = [
         { letter: 'A', word: 'Anton' },
@@ -307,8 +314,100 @@ document.addEventListener("DOMContentLoaded", function () {
         inputField.focus();
     });
 
+    const COUNTER_MAX = 20000;
+    const counterFormatter = new Intl.NumberFormat('de-DE');
+    const graphemeSegmenter = (typeof Intl !== 'undefined' && typeof Intl.Segmenter === 'function')
+        ? new Intl.Segmenter(undefined, { granularity: 'grapheme' })
+        : null;
+
+    function countCharacters(text) {
+        if (!text) return 0;
+        if (graphemeSegmenter) {
+            let n = 0;
+            for (const _ of graphemeSegmenter.segment(text)) n++;
+            return n;
+        }
+        let n = 0;
+        for (const _ of text) n++;
+        return n;
+    }
+
+    function truncateToLimit(text, limit) {
+        if (graphemeSegmenter) {
+            let n = 0;
+            let endIndex = 0;
+            for (const seg of graphemeSegmenter.segment(text)) {
+                if (n >= limit) break;
+                endIndex = seg.index + seg.segment.length;
+                n++;
+            }
+            return text.slice(0, endIndex);
+        }
+        const arr = Array.from(text);
+        return arr.slice(0, limit).join('');
+    }
+
+    function updateCounterDisplay() {
+        const count = countCharacters(counterTextarea.value);
+        counterValueEl.textContent = counterFormatter.format(count);
+        counterFooterEl.classList.toggle('limit-reached', count >= COUNTER_MAX);
+    }
+
+    function openCounterPopup() {
+        counterPopup.classList.add('open');
+        counterPopup.setAttribute('aria-hidden', 'false');
+        updateCounterDisplay();
+        setTimeout(() => counterTextarea.focus(), 50);
+    }
+
+    function closeCounterPopup() {
+        counterPopup.classList.remove('open');
+        counterPopup.setAttribute('aria-hidden', 'true');
+    }
+
+    openCounterBtn.addEventListener('click', openCounterPopup);
+    counterCloseBtn.addEventListener('click', closeCounterPopup);
+
+    counterPopup.addEventListener('click', (e) => {
+        if (e.target === counterPopup) closeCounterPopup();
+    });
+
+    function triggerCounterShake() {
+        counterMaxEl.classList.remove('shake');
+        void counterMaxEl.offsetWidth;
+        counterMaxEl.classList.add('shake');
+    }
+
+    counterMaxEl.addEventListener('animationend', () => {
+        counterMaxEl.classList.remove('shake');
+    });
+
+    counterTextarea.addEventListener('keydown', (e) => {
+        if (countCharacters(counterTextarea.value) >= COUNTER_MAX) {
+            const isPrintable = e.key && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey;
+            if (isPrintable) {
+                triggerCounterShake();
+            }
+        }
+    });
+
+    counterTextarea.addEventListener('input', () => {
+        if (countCharacters(counterTextarea.value) > COUNTER_MAX) {
+            const selStart = counterTextarea.selectionStart;
+            counterTextarea.value = truncateToLimit(counterTextarea.value, COUNTER_MAX);
+            const newPos = Math.min(selStart, counterTextarea.value.length);
+            counterTextarea.setSelectionRange(newPos, newPos);
+            triggerCounterShake();
+        }
+        updateCounterDisplay();
+    });
+
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
+            if (counterPopup.classList.contains('open')) {
+                closeCounterPopup();
+                return;
+            }
             closePopup();
             inputField.value = '';
             clearInfoBox();
@@ -316,6 +415,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (document.activeElement === inputField) return;
+        if (document.activeElement === counterTextarea) return;
         if (e.ctrlKey || e.altKey || e.metaKey) return;
 
         const letter = e.key.toUpperCase();
